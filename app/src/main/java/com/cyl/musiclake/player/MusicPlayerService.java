@@ -220,6 +220,21 @@ public class MusicPlayerService extends Service {
                 for (int i = 0; i < listenerList.size(); i++) {
                     listenerList.get(i).onProgressUpdate(getCurrentPosition(), getDuration());
                 }
+
+                //跳过 起始/结尾
+                if (mPlayer != null && mPlayer.isInitialized()) {
+                    Long total = getDuration();
+                    Long now = getCurrentPosition();
+
+                    Long last = total - now;
+
+                    if (now < 18) {
+                        seekTo(18L * 1000, true);
+                    } else if (last < 15) {
+                        seekTo(total, true);
+                    }
+                }
+
             });
 
     public class MusicPlayerHandler extends Handler {
