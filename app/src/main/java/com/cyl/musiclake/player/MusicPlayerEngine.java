@@ -100,11 +100,10 @@ public class MusicPlayerEngine implements MediaPlayer.OnErrorListener,
 
     public void start() {
         mCurrentMediaPlayer.start();
-        setSpeed();
     }
 
-    public void setSpeed() {
-        mCurrentMediaPlayer.setPlaybackParams(mCurrentMediaPlayer.getPlaybackParams().setSpeed(1.25f));
+    public void setSpeed(float speed) {
+        mCurrentMediaPlayer.setPlaybackParams(mCurrentMediaPlayer.getPlaybackParams().setSpeed(speed));
     }
 
     public void stop() {

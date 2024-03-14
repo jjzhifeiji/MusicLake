@@ -221,16 +221,17 @@ public class MusicPlayerService extends Service {
                     listenerList.get(i).onProgressUpdate(getCurrentPosition(), getDuration());
                 }
 
-                //跳过 起始/结尾
+                //跳过 起始/结尾 调速
                 if (mPlayer != null && mPlayer.isInitialized()) {
                     Long total = getDuration();
                     Long now = getCurrentPosition();
 
                     Long last = total - now;
 
-                    if (now < 18) {
+                    mPlayer.setSpeed(1.25f);
+                    if (now < 18L * 1000) {
                         seekTo(18L * 1000, true);
-                    } else if (last < 15) {
+                    } else if (last < 15L * 1000) {
                         seekTo(total, true);
                     }
                 }
